@@ -16,7 +16,7 @@ function Banner() {
   const fetchIntros = () => {
     fetch('http://149.28.153.73/api/tours')
       .then(res => res.json())
-      .then(data => setIntros(data))
+      .then(({ data }) => setIntros(data))
   }
 
   useEffect(() => {
