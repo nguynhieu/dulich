@@ -2,8 +2,6 @@ import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800);
-  @import '~slick-carousel/slick/slick.css';
-  @import '~slick-carousel/slick/slick-theme.css';
 
   html {
     -webkit-box-sizing: border-box;
@@ -270,6 +268,11 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
   }
 
+  .social_list {
+    display: flex;
+    align-items: center;
+  }
+
   .social_list_item {
     position: relative;
     display: inline-block;
@@ -285,7 +288,8 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
-    line-height: 36px;
+    line-height: 100%;
+    color: #ffffff;
   }
 
   .social_list_item:hover a i {
@@ -345,7 +349,6 @@ export const GlobalStyle = createGlobalStyle`
   .main_nav__logo {
     grid-column: 2/4;
     height: 58px;
-    display: grid;
   }
   .main_nav__logo a {
     font-family: 'Open Sans', sans-serif;
@@ -353,18 +356,31 @@ export const GlobalStyle = createGlobalStyle`
     color: #f4f4f8;
     font-weight: 800;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+  }
+  .main_nav__logo a span {
+    position: relative;
+    left: 14px;
+  }
+  .main_nav__logo a img {
+    width: 34px;
   }
 
   .main_nav__menu {
-    grid-column: 5/10;
+    grid-column: 4/10;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
   }
 
   .main_nav__item {
     position: relative;
     display: inline-block;
-    margin-right: 40px;
+    margin-right: 10px;
+  }
+  .main_nav__item.main_nav__item--active a {
+    color: #31124b;
+    background-color: #ffffff;
   }
   .main_nav__item a {
     font-family: 'Open Sans', sans-serif;
@@ -372,29 +388,13 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 600;
     color: #ffffff;
     text-transform: uppercase;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding: 10px 20px;
+    transition: all 0.35s ease 0s;
+    border-radius: 100px;
   }
-
-  .main_nav__item::after {
-    display: block;
-    position: absolute;
-    left: -1px;
-    bottom: -11px;
-    width: calc(100% + 2px);
-    height: 3px;
-    background: linear-gradient(to right, #fa9e1b, #8d4fff);
-    content: '';
-    opacity: 0;
-    -webkit-transition: all 200ms ease;
-    -moz-transition: all 200ms ease;
-    -ms-transition: all 200ms ease;
-    -o-transition: all 200ms ease;
-    transition: all 200ms ease;
-  }
-
-  .main_nav__item:hover::after {
-    opacity: 1;
+  .main_nav__item a:hover {
+    color: #31124b;
+    background-color: #ffffff;
   }
 
   .main_nav__search {
@@ -431,7 +431,7 @@ export const GlobalStyle = createGlobalStyle`
     grid-column: 1/13;
     z-index: 10;
     background: #31124b;
-    height: 80vh;
+    height: 650px;
   }
 
   .home_slide__item {
@@ -445,7 +445,7 @@ export const GlobalStyle = createGlobalStyle`
     position: absolute;
     top: 0;
     left: 0;
-    width: 100em;
+    width: 100%;
     height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -460,19 +460,22 @@ export const GlobalStyle = createGlobalStyle`
     z-index: 11;
   }
   .home_slider__content h1:first-child {
-    font-size: 112px;
+    font-size: 36px;
     font-weight: 900;
     color: #ffffff;
     text-transform: uppercase;
   }
   .home_slider__content h1:nth-child(2) {
-    font-family: 'Beyond';
-    font-size: 100px;
+    font-size: 110px;
     color: #ffffff;
     word-spacing: 15px;
   }
 
   .home_slider_content_inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     font-size: 14px;
     text-align: center;
     animation-duration: 3s;
