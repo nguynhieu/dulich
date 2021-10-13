@@ -24,41 +24,30 @@ function Banner() {
     fetchIntros()
   }, [])
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  }
   return (
     <>
       <div className="main">
-        {/* <!--slider--> */}
-        <Slider {...settings}>
-          <div className="main__slide">
-            <div>
-              <div
-                className="home_slide__background"
-                style={{ backgroundImage: `url(${banahill})` }}
-              ></div>
-              <div className="home_slider__content">
-                <div className="home_slider_content_inner animated bounceInLeft">
-                  <h1>tour</h1>
-                  <h1>Bana Hill</h1>
-                  <div className="button home_slider__button">
-                    <div className="button_bcg"></div>
-                    <a href="offers.html">
-                      Xem ngay<span></span>
-                      <span></span>
-                      <span></span>
-                    </a>
-                  </div>
-                </div>
+        <div className="main__slide">
+          <div
+            className="home_slide__background"
+            style={{
+              backgroundImage: `url(${banahill})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }}
+          ></div>
+          <div className="home_slider__content">
+            <div className="home_slider_content_inner animated bounceInLeft">
+              <h1>special tour</h1>
+              <h1>Bana Hill</h1>
+              <div className="button home_slider__button">
+                <div className="button_bcg"></div>
+                <a href="offers.html">Xem ngay</a>
               </div>
             </div>
           </div>
-        </Slider>
+        </div>
         <div className="main_search">
           <div id="tabs" className="main_search__tabs">
             <ul className="search_tabs__list">
@@ -116,9 +105,6 @@ function Banner() {
                 </div>
                 <button className="button search_content__button">
                   Tìm kiếm
-                  <span></span>
-                  <span></span>
-                  <span></span>
                 </button>
               </form>
             </div>
@@ -155,11 +141,7 @@ function Banner() {
                         </div>
                         <div className="button intro_button">
                           <div className="button_bcg"></div>
-                          <a href="#">
-                            Xem ngay<span></span>
-                            <span></span>
-                            <span></span>
-                          </a>
+                          <a href="#">Xem ngay</a>
                         </div>
                       </div>
                     </div>
@@ -212,10 +194,7 @@ function Banner() {
                   </div>
                   <div className="button cta_button">
                     <div className="button_bcg"></div>
-                    <a href="#">
-                      Xem thêm <span></span> <span></span> <span></span>{' '}
-                      <span></span>
-                    </a>
+                    <a href="#">Xem thêm</a>
                   </div>
                 </div>
               </div>
