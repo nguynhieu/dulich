@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import logo from 'assets/images/logo.png'
+import blogImage1 from 'assets/images/footer_blog_1.jpg'
+import blogImage2 from 'assets/images/footer_blog_2.jpg'
+import blogImage3 from 'assets/images/footer_blog_3.jpg'
 
 function Footer() {
   const [intros, setIntros] = useState([])
@@ -54,7 +57,7 @@ function Footer() {
           <div className="footer_title">bản tin</div>
           <div className="footer_blog__item">
             <div className="footer_blog__image">
-              <img src="styles/images/footer_blog_1.jpg" alt="" />
+              <img src={blogImage1} alt="" />
             </div>
             <div className="footer_blog__content">
               <div className="footer_blog__title">
@@ -65,7 +68,7 @@ function Footer() {
           </div>
           <div className="footer_blog__item">
             <div className="footer_blog__image">
-              <img src="styles/images/footer_blog_1.jpg" alt="" />
+              <img src={blogImage2} alt="" />
             </div>
             <div className="footer_blog__content">
               <div className="footer_blog__title">
@@ -76,7 +79,7 @@ function Footer() {
           </div>
           <div className="footer_blog__item">
             <div className="footer_blog__image">
-              <img src="styles/images/footer_blog_1.jpg" alt="" />
+              <img src={blogImage3} alt="" />
             </div>
             <div className="footer_blog__content">
               <div className="footer_blog__title">
@@ -116,22 +119,12 @@ function Footer() {
               if (index < 1) {
                 return (
                   <>
-                    {/* <li className="contact_item">
-                                    <div className="contact_icon"><i className="fas fa-map-marker-alt"></i></div>
-                                    <div className="contact_text">254 Nguyễn Văn Linh, Thạc Gián, Thanh Khê, Đà Nẵng</div>
-                                    </li> */}
                     <li className="contact_item">
-                      {/* <div className="contact_icon"><FontAwesomeIcon size="2x" icon={['fab', 'telegram']} /></div> */}
                       <div className="contact_text">{item.phone}</div>
                     </li>
                     <li className="contact_item">
-                      {/* <div className="contact_icon"><FontAwesomeIcon size="2x" icon={['fab', 'mailbox']} /></div> */}
                       <div className="contact_text">{item.email}</div>
                     </li>
-                    {/* <li className="contact_item">
-                                    <div className="contact_icon"><i className="fas fa-globe-asia"></i></div>
-                                    <div className="contact_text">www.</div>
-                                    </li> */}
                   </>
                 )
               }
