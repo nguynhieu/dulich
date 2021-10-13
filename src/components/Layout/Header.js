@@ -1,19 +1,38 @@
-import React, { useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 import logo from 'assets/images/logo.png'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 function Header() {
-  const [activeNav, setActiveNav] = useState(0)
+  const location = useLocation()
+  const [activeNav, setActiveNav] = useState(null)
 
-  const handleNavItemClick = index => () => {
-    setActiveNav(index)
-  }
+  useEffect(() => {
+    switch (location.pathname) {
+      case '/':
+        setActiveNav(0)
+        break
+      case '/about':
+        setActiveNav(1)
+        break
+      case '/offers':
+        setActiveNav(2)
+        break
+      case '/blog':
+        setActiveNav(3)
+        break
+      case '/contact':
+        setActiveNav(4)
+        break
+      default:
+        setActiveNav(0)
+        break
+    }
+  }, [location])
 
   return (
     <header className="header">
-      {/*  Top Bar  */}
+      {/*Top Bar*/}
 
       <div className="top_bar">
         <div className="bar__info">
@@ -21,19 +40,19 @@ function Header() {
           <div className="social">
             <ul className="social_list">
               <li className="social_list_item">
-                <a href="#">
+                <Link to="#">
                   <FontAwesomeIcon size="2x" icon={['fab', 'facebook']} />
-                </a>
+                </Link>
               </li>
               <li className="social_list_item">
-                <a href="#">
+                <Link to="#">
                   <FontAwesomeIcon size="2x" icon={['fab', 'instagram']} />
-                </a>
+                </Link>
               </li>
               <li className="social_list_item">
-                <a href="#">
+                <Link to="#">
                   <FontAwesomeIcon size="2x" icon={['fab', 'youtube']} />
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -42,10 +61,10 @@ function Header() {
 
       <div className="main_nav">
         <div className="main_nav__logo">
-          <a href="/">
+          <Link to="/">
             <img src={logo} alt="logo" />
             <span>DULICHVIET</span>
-          </a>
+          </Link>
         </div>
         <div className="main_nav__menu">
           <ul className="main_nav__list">
@@ -54,7 +73,6 @@ function Header() {
                 'main_nav__item ' +
                 (activeNav === 0 ? 'main_nav__item--active' : '')
               }
-              onClick={handleNavItemClick(0)}
             >
               <Link to="/">TRANG CHỦ</Link>
             </li>
@@ -63,7 +81,6 @@ function Header() {
                 'main_nav__item ' +
                 (activeNav === 1 ? 'main_nav__item--active' : '')
               }
-              onClick={handleNavItemClick(1)}
             >
               <Link to="/about">GIỚI THIỆU</Link>
             </li>
@@ -72,7 +89,6 @@ function Header() {
                 'main_nav__item ' +
                 (activeNav === 2 ? 'main_nav__item--active' : '')
               }
-              onClick={handleNavItemClick(2)}
             >
               <Link to="/offers">ƯU ĐÃI</Link>
             </li>
@@ -81,7 +97,6 @@ function Header() {
                 'main_nav__item ' +
                 (activeNav === 3 ? 'main_nav__item--active' : '')
               }
-              onClick={handleNavItemClick(3)}
             >
               <Link to="/blog">TIN TỨC</Link>
             </li>
@@ -90,7 +105,6 @@ function Header() {
                 'main_nav__item ' +
                 (activeNav === 4 ? 'main_nav__item--active' : '')
               }
-              onClick={handleNavItemClick(4)}
             >
               <Link to="/contact">LIÊN HỆ</Link>
             </li>

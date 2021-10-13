@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
-  @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800);
-
   html {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -1260,6 +1258,13 @@ export const GlobalStyle = createGlobalStyle`
     color: #f4f4f8;
     font-weight: 800;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+  }
+
+  .footer__logo a span {
+    position: relative;
+    left: 10px;
   }
 
   .footer_about__text {
@@ -1447,13 +1452,9 @@ export const GlobalStyle = createGlobalStyle`
 
   .home__content {
     position: absolute;
-    bottom: 106px;
-    left: 540px;
-    /* -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    transform: translateX(-50%); */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .home__title {

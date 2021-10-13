@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import Slider from 'react-slick'
-
-import post from '../assets/images/post.png'
-import compass from '../assets/images/compass.png'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import banahill from '../assets/images/banahill.jpg'
 import bicycle from '../assets/images/bicycle.png'
-import sailboat from '../assets/images/sailboat.png'
+import compass from '../assets/images/compass.png'
+import cta from '../assets/images/cta.jpg'
 import hotel_1 from '../assets/images/hotel_1.jpg'
 import hotel_2 from '../assets/images/hotel_2.jpg'
 import hotel_3 from '../assets/images/hotel_3.jpg'
 import hotel_4 from '../assets/images/hotel_4.jpg'
-import cta from '../assets/images/cta.jpg'
-import banahill from '../assets/images/banahill.jpg'
+import post from '../assets/images/post.png'
+import sailboat from '../assets/images/sailboat.png'
 
 function Banner() {
   const [intros, setIntros] = useState([])
@@ -23,6 +22,10 @@ function Banner() {
   useEffect(() => {
     fetchIntros()
   }, [])
+
+  const handleSearchContentSubmit = event => {
+    event.preventDefault()
+  }
 
   return (
     <>
@@ -43,7 +46,7 @@ function Banner() {
               <h1>Bana Hill</h1>
               <div className="button home_slider__button">
                 <div className="button_bcg"></div>
-                <a href="offers.html">Xem ngay</a>
+                <Link to="/">Xem ngay</Link>
               </div>
             </div>
           </div>
@@ -52,14 +55,18 @@ function Banner() {
           <div id="tabs" className="main_search__tabs">
             <ul className="search_tabs__list">
               <li className="search_tabs__item">
-                <a href="#tabs-1">
+                <Link to="/">
                   <i className="fas fa-umbrella-beach"></i>
                   <span>Trips</span>
-                </a>
+                </Link>
               </li>
             </ul>
             <div id="tabs-1" className="tabs_content animated fadeIn">
-              <form action="" className="search_content">
+              <form
+                action=""
+                className="search_content"
+                onSubmit={handleSearchContentSubmit}
+              >
                 <div className="search_content__item">
                   <div>Địa điểm</div>
                   <input type="text" className="search_content__input" />
@@ -116,36 +123,34 @@ function Banner() {
           <p>Đây là những tour du lịch tốt nhất hiện nay của chúng tôi.</p>
           <p>Sẽ làm bạn hài lòng khi đăng ký những tour dưới đây.</p>
           <div className="main_intro__items" id="main_intro_items_id">
+            {/* eslint-disable-next-line array-callback-return */}
             {intros.map((item, index) => {
-              console.log(item)
               if (index < 3) {
                 return (
-                  <>
-                    <div key={index} className="intro_item">
-                      <div
-                        className="intro_item__backgroud"
-                        style={{ backgroundImage: `url(${item.image})` }}
-                      ></div>
-                      <div className="intro_item__content">
-                        <div className="intro_date">Từ 15/04 - 15/05</div>
-                        <div className="intro_text">
-                          <h1>{item.name}</h1>
-                          <div className="intro_price">{item.price}</div>
-                          <div className="rating rating_4">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                          </div>
-                        </div>
-                        <div className="button intro_button">
-                          <div className="button_bcg"></div>
-                          <a href="#">Xem ngay</a>
+                  <div key={index} className="intro_item">
+                    <div
+                      className="intro_item__backgroud"
+                      style={{ backgroundImage: `url(${item.image})` }}
+                    ></div>
+                    <div className="intro_item__content">
+                      <div className="intro_date">Từ 15/04 - 15/05</div>
+                      <div className="intro_text">
+                        <h1>{item.name}</h1>
+                        <div className="intro_price">{item.price}</div>
+                        <div className="rating rating_4">
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
                         </div>
                       </div>
+                      <div className="button intro_button">
+                        <div className="button_bcg"></div>
+                        <Link to="/">Xem ngay</Link>
+                      </div>
                     </div>
-                  </>
+                  </div>
                 )
               }
             })}
@@ -174,7 +179,7 @@ function Banner() {
                   </div>
                   <div className="button cta_button">
                     <div className="button_bcg"></div>
-                    <a href="#">Xem thêm</a>
+                    <Link to="/">Xem thêm</Link>
                   </div>
                 </div>
               </div>
@@ -194,64 +199,63 @@ function Banner() {
                   </div>
                   <div className="button cta_button">
                     <div className="button_bcg"></div>
-                    <a href="#">Xem thêm</a>
+                    <Link to="/">Xem thêm</Link>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* <!--        Offers--> */}
+        {/*Offers*/}
         <div className="main_offers">
           <div className="box main_offers__box">
             <h2 className="offers_title">Các ưu đãi tối nhất</h2>
             <div className="offers_items">
+              {/* eslint-disable-next-line array-callback-return */}
               {intros.map((item, index) => {
                 if (index < 4) {
                   return (
-                    <>
-                      <div key={index} className="offers_item">
-                        <div className="offers_image">
-                          <div
-                            className="offers_image_background"
-                            style={{ backgroundImage: `url(${item.image})` }}
-                          ></div>
-                          <div className="offers_name">
-                            <a href="#">{item.name}</a>
-                          </div>
-                        </div>
-                        <div className="offers_content">
-                          <div className="offers_price">{item.price}</div>
-                          <div className="rating rating_4 offers_rating">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                          </div>
-                          <p className="offers_text">{item.description}</p>
-                          <div className="offers_icons">
-                            <ul className="offers_icons_list">
-                              <li className="offers_icons_item">
-                                <img src={post} alt="" />
-                              </li>
-                              <li className="offers_icons_item">
-                                <img src={compass} alt="" />
-                              </li>
-                              <li className="offers_icons_item">
-                                <img src={bicycle} alt="" />
-                              </li>
-                              <li className="offers_icons_item">
-                                <img src={sailboat} alt="" />
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="offers_link">
-                            <a href="/offers">Đọc thêm</a>
-                          </div>
+                    <div key={index} className="offers_item">
+                      <div className="offers_image">
+                        <div
+                          className="offers_image_background"
+                          style={{ backgroundImage: `url(${item.image})` }}
+                        ></div>
+                        <div className="offers_name">
+                          <Link to="/">{item.name}</Link>
                         </div>
                       </div>
-                    </>
+                      <div className="offers_content">
+                        <div className="offers_price">{item.price}</div>
+                        <div className="rating rating_4 offers_rating">
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                        </div>
+                        <p className="offers_text">{item.description}</p>
+                        <div className="offers_icons">
+                          <ul className="offers_icons_list">
+                            <li className="offers_icons_item">
+                              <img src={post} alt="" />
+                            </li>
+                            <li className="offers_icons_item">
+                              <img src={compass} alt="" />
+                            </li>
+                            <li className="offers_icons_item">
+                              <img src={bicycle} alt="" />
+                            </li>
+                            <li className="offers_icons_item">
+                              <img src={sailboat} alt="" />
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="offers_link">
+                          <Link to="/offers">Đọc thêm</Link>
+                        </div>
+                      </div>
+                    </div>
                   )
                 }
               })}
@@ -268,7 +272,7 @@ function Banner() {
                 </div>
                 <div className="hotel_content">
                   <div className="hotel_title">
-                    <a href="#">Green Plaza Hotel</a>
+                    <Link to="/">Green Plaza Hotel</Link>
                   </div>
                   <div className="hotel_price">1,000,000đ</div>
                   <div className="hotel_location">Hải Châu, Đà Nẵng</div>
@@ -280,7 +284,7 @@ function Banner() {
                 </div>
                 <div className="hotel_content">
                   <div className="hotel_title">
-                    <a href="#">Hilton Đà Nẵng</a>
+                    <Link to="/">Hilton Đà Nẵng</Link>
                   </div>
                   <div className="hotel_price">3,000,000đ</div>
                   <div className="hotel_location">Hải Châu, Đà Nẵng</div>
@@ -292,7 +296,7 @@ function Banner() {
                 </div>
                 <div className="hotel_content">
                   <div className="hotel_title">
-                    <a href="#">Hanoi Hotel</a>
+                    <Link to="/">Hanoi Hotel</Link>
                   </div>
                   <div className="hotel_price">1,900,00đ</div>
                   <div className="hotel_location">Hà Nội</div>
@@ -304,7 +308,7 @@ function Banner() {
                 </div>
                 <div className="hotel_content">
                   <div className="hotel_title">
-                    <a href="#">Sofitel Sài Gòn</a>
+                    <Link to="/">Sofitel Sài Gòn</Link>
                   </div>
                   <div className="hotel_price">4,100,000đ</div>
                   <div className="hotel_location">Quận 1, HCM</div>
@@ -316,7 +320,7 @@ function Banner() {
                 </div>
                 <div className="hotel_content">
                   <div className="hotel_title">
-                    <a href="#">Green Plaza Hotel</a>
+                    <Link to="/">Green Plaza Hotel</Link>
                   </div>
                   <div className="hotel_price">1,000,000đ</div>
                   <div className="hotel_location">Hải Châu, Đà Nẵng</div>
@@ -328,7 +332,7 @@ function Banner() {
                 </div>
                 <div className="hotel_content">
                   <div className="hotel_title">
-                    <a href="#">Hilton Đà Nẵng</a>
+                    <Link to="/">Hilton Đà Nẵng</Link>
                   </div>
                   <div className="hotel_price">3,000,000đ</div>
                   <div className="hotel_location">Hải Châu, Đà Nẵng</div>
@@ -340,7 +344,7 @@ function Banner() {
                 </div>
                 <div className="hotel_content">
                   <div className="hotel_title">
-                    <a href="#">Hanoi Hotel</a>
+                    <Link to="/">Hanoi Hotel</Link>
                   </div>
                   <div className="hotel_price">1,900,00đ</div>
                   <div className="hotel_location">Hà Nội</div>
@@ -352,7 +356,7 @@ function Banner() {
                 </div>
                 <div className="hotel_content">
                   <div className="hotel_title">
-                    <a href="#">Sofitel Sài Gòn</a>
+                    <Link to="/">Sofitel Sài Gòn</Link>
                   </div>
                   <div className="hotel_price">4,100,000đ</div>
                   <div className="hotel_location">Quận 1, HCM</div>
