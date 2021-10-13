@@ -1,30 +1,36 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useState } from 'react'
+import { NavLink, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import logo from 'assets/images/logo.png'
 
 function Header() {
+  const [activeNav, setActiveNav] = useState(0)
+
+  const handleNavItemClick = index => () => {
+    setActiveNav(index)
+  }
+
   return (
-    <header class="header">
+    <header className="header">
       {/*  Top Bar  */}
 
-      <div class="top_bar">
-        <div class="bar__info">
-          <div class="phone">+84 123 456 789</div>
-          <div class="social">
-            <ul class="social_list">
-              <li class="social_list_item">
+      <div className="top_bar">
+        <div className="bar__info">
+          <div className="phone">+84 123 456 789</div>
+          <div className="social">
+            <ul className="social_list">
+              <li className="social_list_item">
                 <a href="#">
                   <FontAwesomeIcon size="2x" icon={['fab', 'facebook']} />
                 </a>
               </li>
-              <li class="social_list_item">
+              <li className="social_list_item">
                 <a href="#">
                   <FontAwesomeIcon size="2x" icon={['fab', 'instagram']} />
                 </a>
               </li>
-              <li class="social_list_item">
+              <li className="social_list_item">
                 <a href="#">
                   <FontAwesomeIcon size="2x" icon={['fab', 'youtube']} />
                 </a>
@@ -34,38 +40,68 @@ function Header() {
         </div>
       </div>
 
-      <div class="main_nav">
-        <div class="main_nav__logo">
+      <div className="main_nav">
+        <div className="main_nav__logo">
           <a href="/">
             <img src={logo} alt="logo" />
-            DULICHVIET
+            <span>DULICHVIET</span>
           </a>
         </div>
-        <div class="main_nav__menu">
-          <ul class="main_nav__list">
-            <li class="main_nav__item">
-              <NavLink to="/">TRANG CHỦ</NavLink>
+        <div className="main_nav__menu">
+          <ul className="main_nav__list">
+            <li
+              className={
+                'main_nav__item ' +
+                (activeNav === 0 ? 'main_nav__item--active' : '')
+              }
+              onClick={handleNavItemClick(0)}
+            >
+              <Link to="/">TRANG CHỦ</Link>
             </li>
-            <li class="main_nav__item">
-              <NavLink to="/about">GIỚI THIỆU</NavLink>
+            <li
+              className={
+                'main_nav__item ' +
+                (activeNav === 1 ? 'main_nav__item--active' : '')
+              }
+              onClick={handleNavItemClick(1)}
+            >
+              <Link to="/about">GIỚI THIỆU</Link>
             </li>
-            <li class="main_nav__item">
-              <NavLink to="/offers">ƯU ĐÃI</NavLink>
+            <li
+              className={
+                'main_nav__item ' +
+                (activeNav === 2 ? 'main_nav__item--active' : '')
+              }
+              onClick={handleNavItemClick(2)}
+            >
+              <Link to="/offers">ƯU ĐÃI</Link>
             </li>
-            <li class="main_nav__item">
-              <NavLink to="/blog">TIN TỨC</NavLink>
+            <li
+              className={
+                'main_nav__item ' +
+                (activeNav === 3 ? 'main_nav__item--active' : '')
+              }
+              onClick={handleNavItemClick(3)}
+            >
+              <Link to="/blog">TIN TỨC</Link>
             </li>
-            <li class="main_nav__item">
-              <NavLink to="/contact">LIÊN HỆ</NavLink>
+            <li
+              className={
+                'main_nav__item ' +
+                (activeNav === 4 ? 'main_nav__item--active' : '')
+              }
+              onClick={handleNavItemClick(4)}
+            >
+              <Link to="/contact">LIÊN HỆ</Link>
             </li>
           </ul>
         </div>
-        <div class="main_nav__search">
+        <div className="main_nav__search">
           <form action="">
-            <input class="input_search" type="text" />
+            <input className="input_search" type="text" />
           </form>
-          <div class="search__item">
-            <i class="fas fa-search"></i>
+          <div className="search__item">
+            <i className="fas fa-search"></i>
           </div>
         </div>
       </div>
