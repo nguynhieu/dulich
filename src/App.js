@@ -1,45 +1,31 @@
-import logo from './logo.svg';
-import React from 'react';
-import ReactDOM  from 'react';
-import Slider from "react-slick";
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom';
-
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faCheckSquare, faCoffee, faLink, faRoute } from '@fortawesome/free-solid-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
 
-import Header from './components/Header';
-import Banner from './components/Banner';
-import Footer from './components/Footer';
-import Blog from './components/Blog';
-import Contact from './components/Contact';
-import About from './about/About';
-import Offers from './components/Offers';
+import { About, Contact, Banner, Blog, Offers } from 'pages'
+import { Footer, Header } from 'components/Layout'
+import { GlobalStyle } from 'styles/globalStyle'
 
 library.add(fab, faCheckSquare, faCoffee)
+
 function App() {
   return (
     <div className="App">
       <Router>
         <Header />
         <Switch>
-          <Route exact path="dulichviet/" component={Banner} />
-          <Route path="dulichviet/blog" component={Blog} />
-          <Route path="dulichviet/contact" component={Contact} />
-          <Route path="dulichviet/offers" component={Offers} />
-          <Route path="dulichviet/about" component={About} />
+          <Route exact path="/" component={Banner} />
+          <Route path="/blog" component={Blog} />
+          <Route path="/contact" component={Contact} />
+          <Route path="/offers" component={Offers} />
+          <Route path="/about" component={About} />
         </Switch>
         <Footer />
+        <GlobalStyle />
       </Router>
     </div>
-  );
+  )
 }
 
-
-export default App;
+export default App
