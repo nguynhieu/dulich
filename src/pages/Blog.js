@@ -1,7 +1,8 @@
 import React from 'react'
-
-import offers_slide from '../assets/images/offers_slide.jpg'
+import { Link } from 'react-router-dom'
 import blog11 from '../assets/images/blog11.jpg'
+import blog22 from '../assets/images/blog22.jpg'
+import blog_3 from '../assets/images/blog_3.jpg'
 import gallery_1 from '../assets/images/gallery_1.jpg'
 import gallery_2 from '../assets/images/gallery_2.jpg'
 import gallery_3 from '../assets/images/gallery_3.jpg'
@@ -9,24 +10,26 @@ import gallery_4 from '../assets/images/gallery_4.jpg'
 import gallery_5 from '../assets/images/gallery_5.jpg'
 import gallery_6 from '../assets/images/gallery_6.jpg'
 import latest_1 from '../assets/images/latest_1.jpg'
-import blog22 from '../assets/images/blog22.jpg'
-import blog_3 from '../assets/images/blog_3.jpg'
+import offersSlide from '../assets/images/offers_slide.jpg'
 
 function Blog() {
   return (
     <div className="main">
       <div className="main__slide_offers">
-        <div>
-          <div
-            className="home_slide__background"
-            style={{ backgroundImage: `url(${offers_slide})` }}
-          ></div>
-          <div className="home__content">
-            <div className="home__title animated bounceInDown">Tin tức</div>
-          </div>
+        <div
+          className="home_slide__background"
+          style={{
+            backgroundImage: `url(${offersSlide})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        ></div>
+        <div className="home__content">
+          <div className="home__title animated bounceInDown">Tin tức</div>
         </div>
       </div>
-      {/* <!--        blog--> */}
+      {/*blog*/}
       <div className="blog">
         <div className="box blog__box">
           <div className="blog__list">
@@ -40,18 +43,18 @@ function Blog() {
               <div className="blog_post_meta">
                 <ul>
                   <li className="blog_post_meta_item">
-                    <a href="#">by DULICHVIET</a>
+                    <Link to="/">by DULICHVIET</Link>
                   </li>
                   <li className="blog_post_meta_item">
-                    <a href="#">Miền Trung</a>
+                    <Link to="/">Miền Trung</Link>
                   </li>
                   <li className="blog_post_meta_item">
-                    <a href="#">999 bình luận</a>
+                    <Link to="/">999 bình luận</Link>
                   </li>
                 </ul>
               </div>
               <div className="blog_post_title">
-                <a href="#">VỀ MIỀN TRUNG THƯƠNG NHỚ</a>
+                <Link to="/">VỀ MIỀN TRUNG THƯƠNG NHỚ</Link>
               </div>
               <div className="blog_post_text">
                 <p>
@@ -62,7 +65,6 @@ function Blog() {
                   “lạc lối” không muốn quay về…
                 </p>
               </div>
-              {/* <div className="blog_post_link"><a href="#">Xem tiếp...</a></div> */}
             </div>
             <div className="blog_post">
               <div className="blog_post_image">
@@ -74,18 +76,20 @@ function Blog() {
               <div className="blog_post_meta">
                 <ul>
                   <li className="blog_post_meta_item">
-                    <a href="#">by DULICHVIET</a>
+                    <Link to="/">by DULICHVIET</Link>
                   </li>
                   <li className="blog_post_meta_item">
-                    <a href="#">Miền Bắc</a>
+                    <Link to="/">Miền Bắc</Link>
                   </li>
                   <li className="blog_post_meta_item">
-                    <a href="#">102 bình luận</a>
+                    <Link to="/">102 bình luận</Link>
                   </li>
                 </ul>
               </div>
               <div className="blog_post_title">
-                <a href="#">MỘT HÀNH TRÌNH - BA ĐIỂM ĐẾN DI SẢN PHƯƠNG BẮC</a>
+                <Link to="/">
+                  MỘT HÀNH TRÌNH - BA ĐIỂM ĐẾN DI SẢN PHƯƠNG BẮC
+                </Link>
               </div>
               <div className="blog_post_text">
                 <p>
@@ -96,7 +100,6 @@ function Blog() {
                   tốt nhất trong mùa hè này.
                 </p>
               </div>
-              {/* <div className="blog_post_link"><a href="#">Xem tiếp...</a></div> */}
             </div>
             <div className="blog_post">
               <div className="blog_post_image">
@@ -108,20 +111,20 @@ function Blog() {
               <div className="blog_post_meta">
                 <ul>
                   <li className="blog_post_meta_item">
-                    <a href="#">by DULICHVIET</a>
+                    <Link to="/">by DULICHVIET</Link>
                   </li>
                   <li className="blog_post_meta_item">
-                    <a href="#">Miền Bắc</a>
+                    <Link to="/">Miền Bắc</Link>
                   </li>
                   <li className="blog_post_meta_item">
-                    <a href="#">77 bình luận</a>
+                    <Link to="/">77 bình luận</Link>
                   </li>
                 </ul>
               </div>
               <div className="blog_post_title">
-                <a href="#">
+                <Link to="/">
                   TOUR LỄ 30/4 VÀ 1/5: VÌ SAO DU LỊCH TRỌN GÓI VẪN CHIẾM ƯU THẾ?
-                </a>
+                </Link>
               </div>
               <div className="blog_post_text">
                 <p>
@@ -133,7 +136,6 @@ function Blog() {
                   giảm giá hấp dẫn…
                 </p>
               </div>
-              {/* <div className="blog_post_link"><a href="#">Xem tiếp...</a></div> */}
             </div>
             <div className="blog_navigation">
               <ul>
@@ -150,16 +152,16 @@ function Blog() {
               <div className="sidebar_list">
                 <ul>
                   <li>
-                    <a href="">Tháng 1,2021</a>
+                    <Link to="/">Tháng 1,2021</Link>
                   </li>
                   <li>
-                    <a href="">Tháng 2,2021</a>
+                    <Link to="/">Tháng 2,2021</Link>
                   </li>
                   <li>
-                    <a href="">Tháng 3,2021</a>
+                    <Link to="/">Tháng 3,2021</Link>
                   </li>
                   <li>
-                    <a href="">Tháng 4,2021</a>
+                    <Link to="/">Tháng 4,2021</Link>
                   </li>
                 </ul>
               </div>
@@ -170,19 +172,19 @@ function Blog() {
               <div className="sidebar_list">
                 <ul>
                   <li>
-                    <a href="">Đà Nẵng</a>
+                    <Link to="/">Đà Nẵng</Link>
                   </li>
                   <li>
-                    <a href="">Quảng Năm</a>
+                    <Link to="/">Quảng Năm</Link>
                   </li>
                   <li>
-                    <a href="">Huế</a>
+                    <Link to="/">Huế</Link>
                   </li>
                   <li>
-                    <a href="">Hà Nội</a>
+                    <Link to="/">Hà Nội</Link>
                   </li>
                   <li>
-                    <a href="">Hồ Chí Minh</a>
+                    <Link to="/">Hồ Chí Minh</Link>
                   </li>
                 </ul>
               </div>
@@ -197,7 +199,7 @@ function Blog() {
                   </div>
                   <div className="latest_post_content">
                     <div className="latest_post_title">
-                      <a href="#">Bãi biển đẹp ở Đà Nẵng</a>
+                      <Link to="/">Bãi biển đẹp ở Đà Nẵng</Link>
                     </div>
                     <div className="latest_post_meta">
                       by DULICHVIET - 12/04/2021
@@ -210,7 +212,7 @@ function Blog() {
                   </div>
                   <div className="latest_post_content">
                     <div className="latest_post_title">
-                      <a href="#">Cẩm nang du lịch Quảng Nam</a>
+                      <Link to="/">Cẩm nang du lịch Quảng Nam</Link>
                     </div>
                     <div className="latest_post_meta">
                       by DULICHVIET - 11/04/2021
@@ -223,7 +225,7 @@ function Blog() {
                   </div>
                   <div className="latest_post_content">
                     <div className="latest_post_title">
-                      <a href="#">Các tour biển đảo Việt Nam</a>
+                      <Link to="/">Các tour biển đảo Việt Nam</Link>
                     </div>
                     <div className="latest_post_meta">
                       by DULICHVIET - 10/04/2021
@@ -237,34 +239,34 @@ function Blog() {
               <div className="gallery_content">
                 <ul className="gallery_items">
                   <li className="gallery_item">
-                    <a href="#">
+                    <Link to="/">
                       <img className="imggg" src={gallery_1} alt="" />
-                    </a>
+                    </Link>
                   </li>
                   <li className="gallery_item">
-                    <a href="#">
+                    <Link to="/">
                       <img src={gallery_2} alt="" />
-                    </a>
+                    </Link>
                   </li>
                   <li className="gallery_item">
-                    <a href="#">
+                    <Link to="/">
                       <img src={gallery_3} alt="" />
-                    </a>
+                    </Link>
                   </li>
                   <li className="gallery_item">
-                    <a href="#">
+                    <Link to="/">
                       <img src={gallery_4} alt="" />
-                    </a>
+                    </Link>
                   </li>
                   <li className="gallery_item">
-                    <a href="#">
+                    <Link to="/">
                       <img src={gallery_5} alt="" />
-                    </a>
+                    </Link>
                   </li>
                   <li className="gallery_item">
-                    <a href="#">
+                    <Link to="/">
                       <img src={gallery_6} alt="" />
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

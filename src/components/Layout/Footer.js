@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import footerBlog1 from 'assets/images/footer_blog_1.jpg'
+import footerBlog2 from 'assets/images/footer_blog_2.jpg'
+import footerBlog3 from 'assets/images/footer_blog_3.jpg'
 import logo from 'assets/images/logo.png'
-import blogImage1 from 'assets/images/footer_blog_1.jpg'
-import blogImage2 from 'assets/images/footer_blog_2.jpg'
-import blogImage3 from 'assets/images/footer_blog_3.jpg'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function Footer() {
   const [intros, setIntros] = useState([])
@@ -24,10 +25,10 @@ function Footer() {
         <div className="footer__about">
           <div className="footer__logo">
             <div className="logo">
-              <a href="#">
+              <Link to="/">
                 <img src={logo} alt="logo" />
-                DULICHVIET
-              </a>
+                <span>DULICHVIET</span>
+              </Link>
             </div>
           </div>
           <p className="footer_about__text">
@@ -37,19 +38,19 @@ function Footer() {
           </p>
           <ul className="footer_social_list">
             <li className="social_list_item">
-              <a href="#">
+              <Link to="/">
                 <FontAwesomeIcon size="2x" icon={['fab', 'facebook']} />
-              </a>
+              </Link>
             </li>
             <li className="social_list_item">
-              <a href="#">
+              <Link to="/">
                 <FontAwesomeIcon size="2x" icon={['fab', 'instagram']} />
-              </a>
+              </Link>
             </li>
             <li className="social_list_item">
-              <a href="#">
+              <Link to="/">
                 <FontAwesomeIcon size="2x" icon={['fab', 'youtube']} />
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -57,33 +58,33 @@ function Footer() {
           <div className="footer_title">bản tin</div>
           <div className="footer_blog__item">
             <div className="footer_blog__image">
-              <img src={blogImage1} alt="" />
+              <img src={footerBlog1} alt="" />
             </div>
             <div className="footer_blog__content">
               <div className="footer_blog__title">
-                <a href="#">Địa điểm du lịch Hè 2021</a>
+                <Link to="/">Địa điểm du lịch Hè 2021</Link>
               </div>
               <div className="footer_blog__date">30/04/2021</div>
             </div>
           </div>
           <div className="footer_blog__item">
             <div className="footer_blog__image">
-              <img src={blogImage2} alt="" />
+              <img src={footerBlog2} alt="" />
             </div>
             <div className="footer_blog__content">
               <div className="footer_blog__title">
-                <a href="#">Địa điểm du lịch Hè 2021</a>
+                <Link to="/">Địa điểm du lịch Hè 2021</Link>
               </div>
               <div className="footer_blog__date">30/04/2021</div>
             </div>
           </div>
           <div className="footer_blog__item">
             <div className="footer_blog__image">
-              <img src={blogImage3} alt="" />
+              <img src={footerBlog3} alt="" />
             </div>
             <div className="footer_blog__content">
               <div className="footer_blog__title">
-                <a href="#">Địa điểm du lịch Hè 2021</a>
+                <Link to="/">Địa điểm du lịch Hè 2021</Link>
               </div>
               <div className="footer_blog__date">30/04/2021</div>
             </div>
@@ -93,39 +94,40 @@ function Footer() {
           <div className="footer_title">Tags</div>
           <ul className="tags_list">
             <li className="tags_item">
-              <a href="#">Miền Bắc</a>
+              <Link to="/">Miền Bắc</Link>
             </li>
             <li className="tags_item">
-              <a href="#">Miền Trung</a>
+              <Link to="/">Miền Trung</Link>
             </li>
             <li className="tags_item">
-              <a href="#">Miền Nam</a>
+              <Link to="/">Miền Nam</Link>
             </li>
             <li className="tags_item">
-              <a href="#">Đà Nẵng</a>
+              <Link to="/">Đà Nẵng</Link>
             </li>
             <li className="tags_item">
-              <a href="#">Quảng Nam</a>
+              <Link to="/">Quảng Nam</Link>
             </li>
             <li className="tags_item">
-              <a href="#">Huế</a>
+              <Link to="/">Huế</Link>
             </li>
           </ul>
         </div>
         <div className="footer__contact">
           <div className="footer_title">Liên hệ</div>
           <ul className="contact_list">
+            {/* eslint-disable-next-line array-callback-return */}
             {intros.map((item, index) => {
               if (index < 1) {
                 return (
-                  <>
+                  <div key={index}>
                     <li className="contact_item">
                       <div className="contact_text">{item.phone}</div>
                     </li>
                     <li className="contact_item">
                       <div className="contact_text">{item.email}</div>
                     </li>
-                  </>
+                  </div>
                 )
               }
             })}
