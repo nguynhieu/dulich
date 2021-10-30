@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
 
 import { About, Contact, Banner, Blog, Offers } from 'pages'
 import { Footer, Header } from 'components/Layout'
@@ -23,6 +25,7 @@ function App() {
         </Switch>
         <Footer />
         <GlobalStyle />
+        <ToastContainer />
       </Router>
     </div>
   )

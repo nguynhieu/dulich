@@ -1,32 +1,50 @@
-import { useState } from 'react'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import { toast } from 'react-toastify'
+
 import offersSlide from '../assets/images/offers_slide.jpg'
 
+const phoneRegex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/
+
+const initValue = {
+  name: '',
+  email: '',
+  phone: '',
+  title: '',
+  content: '',
+}
+
+const contactShema = Yup.object({
+  name: Yup.string().required('Đây là trường bắt buộc'),
+  email: Yup.string()
+    .email('Email không hợp lệ')
+    .required('Đây là trường bắt buộc'),
+  phone: Yup.string()
+    .matches(phoneRegex, 'Số điện thoại không hợp lệ')
+    .required('Đây là trường bắt buộc'),
+  title: Yup.string().required('Đây là trường bắt buộc'),
+  content: Yup.string().required('Đây là trường bắt buộc'),
+})
+
 function Contact() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
-
-  const handleNameChange = event => {
-    setName(event.target.value)
-  }
-  const handleEmailChange = event => {
-    setEmail(event.target.value)
-  }
-  const handlePhoneChange = event => {
-    setPhone(event.target.value)
-  }
-  const handleTitleChange = event => {
-    setTitle(event.target.value)
-  }
-  const handleContentChange = event => {
-    setContent(event.target.value)
+  const sendContact = values => {
+    fetch('https://arcane-beach-58118.herokuapp.com/api/tours', {
+      method: 'POST',
+      body: values,
+    })
+      .then(res => {
+        toast.success(
+          'Gửi liên hệ thành công, chúng tôi sẽ liên hệ lại cho bạn trong vài phút, xin cám ơn!',
+        )
+      })
+      .catch(err => console.log(err))
   }
 
-  const handleContactFormSubmit = event => {
-    event.preventDefault()
-  }
+  const { handleChange, touched, handleSubmit, errors } = useFormik({
+    initialValues: initValue,
+    validationSchema: contactShema,
+    onSubmit: values => sendContact(values),
+  })
 
   return (
     <div className="main">
@@ -44,7 +62,6 @@ function Contact() {
           <div className="home__title animated bounceInDown">Liên hệ</div>
         </div>
       </div>
-      {/*contact*/}
       <div className="contact_form_container">
         <div className="box contact_form__box">
           <div className="contact_form__Title">Form liên hệ</div>
@@ -52,7 +69,7 @@ function Contact() {
             id="form_contact"
             className="contact__form"
             name="form_contact"
-            onSubmit={handleContactFormSubmit}
+            onSubmit={handleSubmit}
           >
             <label>
               <input
@@ -61,8 +78,7 @@ function Contact() {
                 name="name"
                 placeholder="Họ và Tên"
                 type="text"
-                value={name}
-                onChange={handleNameChange}
+                onChange={handleChange}
               />
             </label>
             <label>
@@ -72,40 +88,36 @@ function Contact() {
                 name="email"
                 placeholder="E-mail"
                 type="text"
-                value={email}
-                onChange={handleEmailChange}
+                onChange={handleChange}
               />
             </label>
             <label>
               <input
                 id="form_subject"
                 className="contact__form_subject input_field"
-                name="subject"
+                name="phone"
                 placeholder="Số Điện Thoại"
                 type="tel"
-                value={phone}
-                onChange={handlePhoneChange}
+                onChange={handleChange}
               />
             </label>
             <label>
               <input
                 id="form_subject"
                 className="contact__form_subject input_field"
-                name="subject"
+                name="title"
                 placeholder="Chủ đề"
                 type="text"
-                value={title}
-                onChange={handleTitleChange}
+                onChange={handleChange}
               />
             </label>
             <textarea
-              name="mess"
+              name="content"
               id="form_mess"
               placeholder="Nội dung"
               rows="4"
               className="contact__form_mess input_field"
-              value={content}
-              onChange={handleContentChange}
+              onChange={handleChange}
             ></textarea>
             <input
               type="submit"

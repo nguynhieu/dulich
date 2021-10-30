@@ -13,6 +13,7 @@ import sailboat from '../assets/images/sailboat.png'
 
 function Banner() {
   const [intros, setIntros] = useState([])
+
   const fetchIntros = () => {
     fetch('https://arcane-beach-58118.herokuapp.com/api/tours')
       .then(res => res.json())
