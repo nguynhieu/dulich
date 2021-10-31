@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom'
 import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -23,6 +28,7 @@ function App() {
           <Route exact path="/offers" component={Offers} />
           <Route exact path="/about" component={About} />
           <Route path="/:tourId" component={TourDetail} />
+          <Redirect to="/" />
         </Switch>
         <Footer />
         <GlobalStyle />
