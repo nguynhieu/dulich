@@ -29,9 +29,12 @@ const contactShema = Yup.object({
 
 function Contact() {
   const sendContact = values => {
-    fetch('https://arcane-beach-58118.herokuapp.com/api/tours', {
+    fetch('https://arcane-beach-58118.herokuapp.com/api/contact', {
       method: 'POST',
-      body: values,
+      body: JSON.stringify(values),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
       .then(res => {
         toast.success(

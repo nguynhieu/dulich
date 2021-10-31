@@ -68,13 +68,11 @@ const TourDetail = () => {
       })
   }
 
-  const { handleChange, handleSubmit, values, errors } = useFormik({
+  const { handleChange, handleSubmit, values } = useFormik({
     initialValues: initValue,
     validationSchema: contactShema,
     onSubmit: values => sendContact(values),
   })
-
-  console.log(errors)
 
   useEffect(() => {
     const fetchTour = () => {
