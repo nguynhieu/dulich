@@ -54,7 +54,15 @@ function Offers() {
           <div className="intro_text">
             <h1>{item.name}</h1>
             <div className="intro_price">
-              {parseInt(item.price).toLocaleString()} ₫
+              <p className="intro_price-old">
+                {parseInt(item.price).toLocaleString()} ₫
+              </p>
+              <p className="intro_price-new">
+                {parseInt(
+                  Math.ceil(item.price * (100 - item.discount)) / 100,
+                ).toLocaleString()}{' '}
+                ₫
+              </p>
             </div>
             <div className="rating rating_4">
               <i className="fas fa-star"></i>

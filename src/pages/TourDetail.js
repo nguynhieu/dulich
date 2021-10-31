@@ -68,11 +68,12 @@ const TourDetail = () => {
       })
   }
 
-  const { handleChange, handleSubmit, values } = useFormik({
-    initialValues: initValue,
-    validationSchema: contactShema,
-    onSubmit: values => sendContact(values),
-  })
+  const { handleChange, handleSubmit, handleBlur, values, errors, touched } =
+    useFormik({
+      initialValues: initValue,
+      validationSchema: contactShema,
+      onSubmit: values => sendContact(values),
+    })
 
   useEffect(() => {
     const fetchTour = () => {
@@ -173,7 +174,13 @@ const TourDetail = () => {
                     placeholder="E-mail"
                     type="text"
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
+                  {errors.email && touched.email && (
+                    <p style={{ color: '#ff6161', textAlign: 'left' }}>
+                      {errors.email}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label>Số điện thoại:</label>
@@ -183,7 +190,13 @@ const TourDetail = () => {
                     placeholder="Số Điện Thoại"
                     type="tel"
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
+                  {errors.phone && touched.phone && (
+                    <p style={{ color: '#ff6161', textAlign: 'left' }}>
+                      {errors.phone}
+                    </p>
+                  )}
                 </div>
                 <label
                   htmlFor="dateFrom"
@@ -207,7 +220,13 @@ const TourDetail = () => {
                   value={values.dateFrom}
                   onChange={handleChange}
                   min={dayjs().format('YYYY-MM-DD')}
+                  onBlur={handleBlur}
                 />
+                {errors.dateFrom && touched.dateFrom && (
+                  <p style={{ color: '#ff6161', textAlign: 'left' }}>
+                    {errors.dateFrom}
+                  </p>
+                )}
                 <label
                   htmlFor="dateTo"
                   style={{
@@ -229,8 +248,14 @@ const TourDetail = () => {
                   type="date"
                   value={values.dateTo}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   min={dayjs(values.dateFrom).format('YYYY-MM-DD')}
                 />
+                {errors.dateTo && touched.dateTo && (
+                  <p style={{ color: '#ff6161', textAlign: 'left' }}>
+                    {errors.dateTo}
+                  </p>
+                )}
                 <input
                   type="submit"
                   className="contact__form_button button trans_200"

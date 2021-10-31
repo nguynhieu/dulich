@@ -823,10 +823,21 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .intro_price {
-    font-size: 14px;
     font-weight: 400;
-    color: #ffffff;
     margin-top: -4px;
+  }
+
+  .intro_price .intro_price-old {
+    color: #ffffff;
+    font-size: 14px;
+    font-style: normal;
+    text-decoration: line-through;
+  }
+
+  .intro_price .intro_price-new {
+    color: #ffffff;
+    font-size: 20px;
+    font-style: normal;
   }
 
   .rating {

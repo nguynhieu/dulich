@@ -44,11 +44,13 @@ function Contact() {
       .catch(err => console.log(err))
   }
 
-  const { handleChange, handleSubmit } = useFormik({
-    initialValues: initValue,
-    validationSchema: contactShema,
-    onSubmit: values => sendContact(values),
-  })
+  const { handleChange, handleSubmit, handleBlur, errors, touched } = useFormik(
+    {
+      initialValues: initValue,
+      validationSchema: contactShema,
+      onSubmit: values => sendContact(values),
+    },
+  )
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -87,7 +89,13 @@ function Contact() {
                 placeholder="Họ và Tên"
                 type="text"
                 onChange={handleChange}
+                onBlur={handleBlur}
               />
+              {errors.name && touched.name && (
+                <p style={{ color: '#ff6161', textAlign: 'left' }}>
+                  {errors.name}
+                </p>
+              )}
             </label>
             <label>
               <input
@@ -97,7 +105,13 @@ function Contact() {
                 placeholder="E-mail"
                 type="text"
                 onChange={handleChange}
+                onBlur={handleBlur}
               />
+              {errors.email && touched.email && (
+                <p style={{ color: '#ff6161', textAlign: 'left' }}>
+                  {errors.email}
+                </p>
+              )}
             </label>
             <label>
               <input
@@ -107,7 +121,13 @@ function Contact() {
                 placeholder="Số Điện Thoại"
                 type="tel"
                 onChange={handleChange}
+                onBlur={handleBlur}
               />
+              {errors.phone && touched.phone && (
+                <p style={{ color: '#ff6161', textAlign: 'left' }}>
+                  {errors.phone}
+                </p>
+              )}
             </label>
             <label>
               <input
@@ -117,7 +137,13 @@ function Contact() {
                 placeholder="Chủ đề"
                 type="text"
                 onChange={handleChange}
+                onBlur={handleBlur}
               />
+              {errors.title && touched.title && (
+                <p style={{ color: '#ff6161', textAlign: 'left' }}>
+                  {errors.title}
+                </p>
+              )}
             </label>
             <textarea
               name="content"
@@ -126,7 +152,13 @@ function Contact() {
               rows="4"
               className="contact__form_mess input_field"
               onChange={handleChange}
+              onBlur={handleBlur}
             ></textarea>
+            {errors.content && touched.content && (
+              <p style={{ color: '#ff6161', textAlign: 'left' }}>
+                {errors.content}
+              </p>
+            )}
             <input
               type="submit"
               className="contact__form_button button trans_200"
