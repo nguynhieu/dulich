@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import blog11 from '../assets/images/blog11.jpg'
 import blog22 from '../assets/images/blog22.jpg'
@@ -13,6 +13,10 @@ import latest_1 from '../assets/images/latest_1.jpg'
 import offersSlide from '../assets/images/offers_slide.jpg'
 
 function Blog() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className="main">
       <div className="main__slide_offers">

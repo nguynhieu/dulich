@@ -5,7 +5,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 
-import { About, Contact, Banner, Blog, Offers } from 'pages'
+import { About, Contact, Banner, Blog, Offers, TourDetail } from 'pages'
 import { Footer, Header } from 'components/Layout'
 import { GlobalStyle } from 'styles/globalStyle'
 
@@ -18,10 +18,11 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={Banner} />
-          <Route path="/blog" component={Blog} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/offers" component={Offers} />
-          <Route path="/about" component={About} />
+          <Route exact path="/blog" component={Blog} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/offers" component={Offers} />
+          <Route exact path="/about" component={About} />
+          <Route path="/:tourId" component={TourDetail} />
         </Switch>
         <Footer />
         <GlobalStyle />

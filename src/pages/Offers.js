@@ -1,23 +1,89 @@
+import dayjs from 'dayjs'
+import { useFormik } from 'formik'
+import qs from 'qs'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import offerSlide11 from '../assets/images/offers_slide11.jpg'
 
+const defaultValues = {
+  name: '',
+  address: '',
+  createdAt: '',
+  price: '',
+}
+
 function Offers() {
   const [intros, setIntros] = useState([])
+  const [isExpanded, setIsExpanded] = useState(false)
 
   const fetchIntros = () => {
-    fetch('https://arcane-beach-58118.herokuapp.com/api/tours')
+    fetch('https://arcane-beach-58118.herokuapp.com/api/tours?discount=true')
       .then(res => res.json())
       .then(({ data }) => setIntros(data))
+  }
+
+  const formik = useFormik({
+    initialValues: defaultValues,
+    onSubmit: values => {
+      const query = qs.stringify(values)
+      fetch(
+        `https://arcane-beach-58118.herokuapp.com/api/tours?discount=true&${query}`,
+      )
+        .then(res => res.json())
+        .then(({ data }) => setIntros(data))
+    },
+  })
+
+  const { handleChange, values, handleSubmit } = formik
+
+  const renderIntros = (intros, isExpanded) => {
+    if (!isExpanded) {
+      intros = intros.slice(0, 9)
+    }
+
+    return intros.map((item, index) => (
+      <div key={index} className="intro_item">
+        <div
+          className="intro_item__backgroud"
+          style={{ backgroundImage: `url(${item.image})` }}
+        ></div>
+        <div className="intro_item__content">
+          <div className="intro_date">
+            Từ {dayjs(item.date).format('DD/MM/YYYY')}
+          </div>
+          <div className="intro_text">
+            <h1>{item.name}</h1>
+            <div className="intro_price">
+              {parseInt(item.price).toLocaleString()} ₫
+            </div>
+            <div className="rating rating_4">
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+            </div>
+          </div>
+          <div className="button intro_button">
+            <div className="button_bcg"></div>
+            <Link to={`/${item._id}`}>Xem ngay</Link>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+
+  const handleIsExpandedClick = () => {
+    setIsExpanded(true)
   }
 
   useEffect(() => {
     fetchIntros()
   }, [])
 
-  const handleSearchContentSubmit = event => {
-    event.preventDefault()
-  }
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className="main">
@@ -47,199 +113,78 @@ function Offers() {
             </li>
           </ul>
           <div id="tabs-1" className="tabs_content animated fadeIn">
-            <form
-              action=""
-              className="search_content"
-              onSubmit={handleSearchContentSubmit}
-            >
+            <form className="search_content" onSubmit={handleSubmit}>
               <div className="search_content__item">
-                <div>Địa điểm</div>
-                <input type="text" className="search_content__input" />
+                <label htmlFor="name">Tên</label>
+                <input
+                  type="text"
+                  className="search_content__input"
+                  name="name"
+                  id="name"
+                  value={values.name}
+                  onChange={handleChange}
+                />
               </div>
               <div className="search_content__item">
-                <div>Bắt đầu</div>
+                <label htmlFor="address">Địa chỉ</label>
+                <input
+                  type="text"
+                  className="search_content__input"
+                  name="address"
+                  id="address"
+                  value={values.address}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="search_content__item">
+                <label htmlFor="createdAt">Ngày bắt đầu</label>
                 <input
                   type="date"
                   className="search_content__input"
                   placeholder="DD-MM-YYYY"
+                  name="createdAt"
+                  value={values.createdAt}
+                  onChange={handleChange}
                 />
               </div>
               <div className="search_content__item">
-                <div>Kết thúc</div>
+                <label htmlFor="price">Giá</label>
                 <input
-                  type="date"
+                  type="text"
                   className="search_content__input"
-                  placeholder="DD-MM-YYYY"
+                  placeholder="0"
+                  name="price"
+                  id="price"
+                  value={values.price}
+                  onChange={handleChange}
                 />
               </div>
-              <div className="search_content__item">
-                <div>Người lớn</div>
-                <select name="adults" className="search_content__input">
-                  <option>01</option>
-                  <option>02</option>
-                  <option>03</option>
-                  <option>04</option>
-                  <option>05</option>
-                  <option>06</option>
-                </select>
-              </div>
-              <div className="search_content__item">
-                <div>Trẻ em</div>
-                <select name="children" className="search_content__input">
-                  <option>0</option>
-                  <option>01</option>
-                  <option>02</option>
-                  <option>03</option>
-                  <option>04</option>
-                  <option>05</option>
-                  <option>06</option>
-                </select>
-              </div>
-              <button className="button search_content__button">
+              <button className="button search_content__button" type="submit">
                 Tìm kiếm
               </button>
             </form>
           </div>
         </div>
       </div>
-      <div className="offers">
-        <div className="box offers__box1">
-          <div className="offers_sorting_container">
-            <ul className="offers_sorting">
-              <li id="offer_1">
-                <span className="sorting_text">Giá</span>
-                <i className="fas fa-angle-down"></i>
-                <ul id="offer_box_1" className="animated fadeInUp">
-                  <li className="sort_btn">
-                    <span>Hiện tất cả</span>
-                  </li>
-                  <li className="sort_btn">
-                    <span>Tăng dần</span>
-                  </li>
-                  <li className="sort_btn">
-                    <span>Giảm dần</span>
-                  </li>
-                </ul>
-              </li>
-              <li id="offer_2">
-                <span className="sorting_text">Thứ tự</span>
-                <i className="fas fa-angle-down"></i>
-                <ul id="offer_box_2">
-                  <li className="sort_btn">
-                    <span>Mặc định</span>
-                  </li>
-                  <li className="sort_btn">
-                    <span>Bảng chữ cái</span>
-                  </li>
-                </ul>
-              </li>
-              <li id="offer_3">
-                <span className="sorting_text">Sao</span>
-                <i className="fas fa-angle-down"></i>
-                <ul id="offer_box_3">
-                  <li className="filter_btn" data-filter="*">
-                    <span>Hiện tất cả</span>
-                  </li>
-                  <li className="sort_btn">
-                    <span>Giảm dần</span>
-                  </li>
-                  <li className="filter_btn" data-filter=".rating_3">
-                    <span>3</span>
-                  </li>
-                  <li className="filter_btn" data-filter=".rating_4">
-                    <span>4</span>
-                  </li>
-                  <li className="filter_btn" data-filter=".rating_5">
-                    <span>5</span>
-                  </li>
-                </ul>
-              </li>
-              <li id="offer_4">
-                <span className="sorting_text">Khoảng cách</span>
-                <i className="fas fa-angle-down"></i>
-                <ul id="offer_box_4">
-                  <li className="num_sorting_btn">
-                    <span>50Km</span>
-                  </li>
-                  <li className="num_sorting_btn">
-                    <span>100Km</span>
-                  </li>
-                  <li className="num_sorting_btn">
-                    <span>200Km</span>
-                  </li>
-                </ul>
-              </li>
-              <li id="offer_5">
-                <span className="sorting_text">Đánh giá</span>
-                <i className="fas fa-angle-down"></i>
-                <ul id="offer_box_5">
-                  <li className="num_sorting_btn">
-                    <span>Very Good</span>
-                  </li>
-                  <li className="num_sorting_btn">
-                    <span>Good</span>
-                  </li>
-                  <li className="num_sorting_btn">
-                    <span>Medium</span>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+
+      <div className="main_intro">
+        <div className="main_intro__items" id="main_intro_items_id">
+          {renderIntros(intros, isExpanded)}
         </div>
-        <div className="box offers__box2">
-          <div className="offers_grid" style={{ position: 'relative' }}>
-            {/* eslint-disable-next-line array-callback-return */}
-            {intros.map((item, index) => {
-              if (index < 4) {
-                return (
-                  <div className="offers_item2" key={index}>
-                    <div className="offers_image f_image">
-                      <div
-                        className="offers_image_background"
-                        style={{ backgroundImage: `url(${item.image})` }}
-                      ></div>
-                      <div className="offers_name">
-                        <Link to="/">{item.name}</Link>
-                      </div>
-                    </div>
-                    <div className="offers_content">
-                      <div className="offers_price">{item.price}</div>
-                      <div
-                        className="rating rating_4 offers_rating"
-                        data-rating="4"
-                      >
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                      </div>
-                      <p className="offers_text">{item.description}</p>
-                      <div className="offers_icons"></div>
-                      <div className="button book_button">
-                        <Link to="/">book</Link>
-                      </div>
-                      <div className="offer_reviews">
-                        <div className="offer_reviews_content">
-                          <div className="offer_reviews_title">very good</div>
-                          <div className="offer_reviews_subtitle">
-                            100 lượt xem
-                          </div>
-                        </div>
-                        <div
-                          className="offer_reviews_rating"
-                          style={{ textAlign: 'center' }}
-                        >
-                          {item.star}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-              }
-            })}
-          </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          {!isExpanded && (
+            <button
+              onClick={handleIsExpandedClick}
+              className="button search_content__button"
+            >
+              Xem tất cả
+            </button>
+          )}
         </div>
       </div>
     </div>

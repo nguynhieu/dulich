@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import aboutSlide from '../assets/images/about_slide.jpg'
 import intro from '../assets/images/intro.png'
 
 function About() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className="main">
       <div className="main__slide_offers">

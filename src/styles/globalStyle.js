@@ -663,7 +663,7 @@ export const GlobalStyle = createGlobalStyle`
     align-items: center !important;
   }
 
-  .search_content__item div {
+  .search_content__item label {
     font-size: 13px;
     font-weight: 700;
     color: #ffffff;
@@ -750,11 +750,13 @@ export const GlobalStyle = createGlobalStyle`
   .main_intro__items {
     margin-top: 6rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
   }
 
   .intro_item {
     width: 28%;
+    margin-bottom: 3rem;
     height: 425px;
   }
 
@@ -774,6 +776,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
     z-index: 3;
+    background: #00000038;
   }
 
   .intro_date {
@@ -1618,11 +1621,33 @@ export const GlobalStyle = createGlobalStyle`
 
   .about__box {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+  }
+
+  .about__description {
+    grid-column: 2/12;
+  }
+
+  .about__description p {
+    color: #000000;
   }
 
   .about__content {
     width: 35%;
+  }
+
+  .about__content .about__detail {
+    margin-bottom: 1rem;
+  }
+
+  .about__content .about__detail h6 {
+    font-size: 1.25rem;
+    color: #000000;
+    font-weight: bold;
+  }
+
+  .about__content .about__detail p {
+    color: #000000;
   }
 
   .about__title {
@@ -1647,6 +1672,10 @@ export const GlobalStyle = createGlobalStyle`
 
   .about__image {
     width: 57%;
+  }
+
+  .about__image img {
+    width: 100%;
   }
 
   .statistic {
@@ -1789,12 +1818,12 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .contact__form_name {
-    width: calc((100% - 30px) / 2);
+    width: 100%;
     margin-right: 30px;
   }
 
   .contact__form_email {
-    width: calc((100% - 30px) / 2);
+    width: 100%;
   }
 
   .contact__form_subject {
@@ -2125,5 +2154,16 @@ export const GlobalStyle = createGlobalStyle`
   .gallery_item img {
     width: 100%;
   }
+
+  .booking {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column: 1/13;
+  }
+
+  .booking h3 {
+    color: #000000;
+  }
+
 /*# sourceMappingURL=main_style.css.map */
 `

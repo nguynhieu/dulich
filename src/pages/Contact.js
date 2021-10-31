@@ -1,6 +1,7 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { toast } from 'react-toastify'
+import { useEffect } from 'react'
 
 import offersSlide from '../assets/images/offers_slide.jpg'
 
@@ -40,11 +41,15 @@ function Contact() {
       .catch(err => console.log(err))
   }
 
-  const { handleChange, touched, handleSubmit, errors } = useFormik({
+  const { handleChange, handleSubmit } = useFormik({
     initialValues: initValue,
     validationSchema: contactShema,
     onSubmit: values => sendContact(values),
   })
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className="main">
@@ -64,7 +69,7 @@ function Contact() {
       </div>
       <div className="contact_form_container">
         <div className="box contact_form__box">
-          <div className="contact_form__Title">Form liên hệ</div>
+          <div className="contact_form__title">Form liên hệ</div>
           <form
             id="form_contact"
             className="contact__form"
